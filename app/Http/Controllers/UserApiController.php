@@ -50,7 +50,7 @@ class UserApiController extends Controller
      */
     public function show($id)
     {
-      $user = User::find(1)->toArray();
+      $user = User::findOrFail($id)->toArray();
 
       return Response::JSON($user);
     }
@@ -71,7 +71,8 @@ class UserApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find(1)->toArray();
+      $user = User::find($id);
+      $user->update($request->all());
 
       return Response::JSON($user );
     }
@@ -84,7 +85,7 @@ class UserApiController extends Controller
      */
     public function destroy($id)
     {
-      $user = User::find(1);
+      $user = User::find($id);
       $user->delete();
 
       return Response::JSON($user);
