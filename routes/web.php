@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return "WEB";
+    return "MARISERVIS";
 });

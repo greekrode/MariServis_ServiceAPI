@@ -19,6 +19,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function() {
 
-    Route::resource('/users', 'UserApiController', ['except' => ['create', 'edit']]);
+    // Categories
+    Route::resource('/categories', 'CategoryController', ['except' => ['create', 'edit']]);
+
+    // Inventory
+    Route::resource('/inventories', 'InventoryController', ['except' => ['create', 'edit']]);
+
+    // Service
+    Route::resource('/services', 'ServiceController', ['except' => ['create', 'edit']]);
+
+    // ServiceType
+    Route::resource('/servicetypes', 'ServiceTypeController', ['except' => ['create', 'edit']]);
+
+    // Payment
+    Route::resource('/payments', 'PaymentController', ['except' => ['create', 'edit']]);
+
+    // Department
+    Route::resource('/Departments', 'DepartmentController', ['except' => ['create', 'edit']]);
+
+    // Staff
+    Route::resource('/staffs', 'StaffController', ['except' => ['create', 'edit']]);
+
+    // Pelanggan
+    Route::resource('/customers', 'CustomerController', ['except' => ['create', 'edit']]);
+
+    // Kendaraan
+    Route::resource('/cars', 'CarController', ['except' => ['create', 'edit']]);
+
+    // StatusKendaraan
+    Route::resource('/status', 'StatusController', ['except' => ['create', 'edit']]);
 
 });
