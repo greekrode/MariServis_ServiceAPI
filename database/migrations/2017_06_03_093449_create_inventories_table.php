@@ -16,8 +16,10 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('nama');
-            $table->string('harga');
+            $table->string('nama')->unique();
+            $table->decimal('harga')->unsigned();
+            $table->integer("qty")->unsigned();
+            $table->integer('category_id')->index();
         });
     }
 

@@ -1,10 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ApiControllers;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
-class StaffController extends Controller
+use App\User;
+// TUGAS UPH JSON
+
+class UserApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +19,9 @@ class StaffController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::get()->toArray();
+
+        return Response::JSON($user);
     }
 
     /**
@@ -21,10 +29,6 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +38,11 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user = new User();
+      $input = $request->all();
+      $user->create($input);
+
+      return Response::JSON($user);
     }
 
     /**
@@ -45,7 +53,9 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+      $user = User::findOrFail($id)->toArray();
+
+      return Response::JSON($user);
     }
 
     /**
@@ -54,10 +64,6 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,7 +74,10 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $user = User::find($id);
+      $user->update($request->all());
+
+      return Response::JSON($user );
     }
 
     /**
@@ -79,6 +88,9 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = User::find($id);
+      $user->delete();
+
+      return Response::JSON($user);
     }
 }

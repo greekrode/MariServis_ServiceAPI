@@ -17,9 +17,9 @@ class CreateStaffTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nama');
-            $table->string('no_telp');
+            $table->bigInteger('no_telp');
             $table->string('alamat');
-            $table->integer('departement_id');
+            $table->integer('department_id')->nullable()->unsigned()->index();
         });
     }
 
