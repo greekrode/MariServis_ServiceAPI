@@ -19,6 +19,9 @@ class CreateCustomersTable extends Migration
             $table->string('nama');
             $table->string('alamat');
             $table->string('no_telp');
+            $table->integer('user_id')->unique()->unsigned()->index();
+
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -12,13 +12,11 @@ class CreatePaymentsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { // no need price
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('total');
-            $table->string('metode_pembayaran');
-            $table->integer('service_id');
+            $table->string('metode_pembayaran')->unique();
         });
     }
 

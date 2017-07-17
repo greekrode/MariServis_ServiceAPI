@@ -12,13 +12,14 @@ class CreateInventoryServicesTable extends Migration
      * @return void
      */
     public function up()
-    {// PERANTARA
-        Schema::create('inventory_services', function (Blueprint $table) {
+    {// PERANTARA inventory-qty san service_id
+        Schema::create('inventory_service', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('Inventory_id');
-            $table->integer('service_id');
-            $table->integer('qty');
+            $table->integer('inventory_id')->default(0)->unsigned();
+            $table->integer('service_id')->default(0)->unsigned();
+            $table->integer('qty')->default(0)->unsigned();
+            $table->decimal('total_harga')->default(0)->unsigned();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateInventoryServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_services');
+        Schema::dropIfExists('inventory_service');
     }
 }

@@ -6,6 +6,15 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException; // DATABASE(CONTROLLER->MODEL) DATA NOT FOUND ERROR HANDLING
+use Illuminate\Database\QueryException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -44,6 +53,47 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+
+
+        // JWT
+        if ($exception instanceof TokenExpiredException) {
+            return response()->json(['Handler.php token_expired'], $exception->getStatusCode());
+        } else if ($exception instanceof TokenInvalidException) {
+            return response()->json(['Handler.php token_invalid'], $exception->getStatusCode());
+        } else if ($exception instanceof PayloadException) {
+            return response()->JSON(['error' => 'Handler.php PayloadException error'], $exception->getStatusCode());
+        } else if ($exception instanceof JWTException) {
+            return response()->json(['Handler.php invalid_email_or_password'], $exception->getStatusCode());
+        }
+        // ELOQUENT
+        if ($exception instanceof ModelNotFoundException) { // database
+            return response()->json(['error' => 'Handler.php Data not found'], 404);
+        } else if ($exception instanceof QueryException) { // database
+            return response()->json(['error' => 'Handler.php data duplicate detected.']);
+        }
+
+
+
+        if ($this->isHttpException($exception))
+        {
+          if ($exception instanceof NotFoundHttpException) {
+              return response()->JSON(['error' => 'NotFoundHttpException',
+                                       'status code' => $exception->getStatusCode()]);
+          } else if ($exception instanceof MethodNotAllowedHttpException) {
+            return response()->JSON(['error' => 'MethodNotAllowedHttpException',
+                                     'status code' => $exception->getStatusCode()]);
+          }
+
+          return response()->JSON(['error' => 'Unknown error',
+                                   'status code' => $exception->getStatusCode()]);
+        }
+
+
+
+
+
+
         return parent::render($request, $exception);
     }
 

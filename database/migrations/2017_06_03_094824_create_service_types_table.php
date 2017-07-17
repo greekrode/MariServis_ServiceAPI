@@ -12,12 +12,14 @@ class CreateServiceTypesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {// tipe_servis <-> inventory
         Schema::create('service_types', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('jenis');
-            $table->integer('harga');
+            $table->string('nama')->unique();
+            $table->decimal('biaya')->unsigned();
+
+            $table->integer('department_id')->default(0)->unsigned()->index();
         });
     }
 

@@ -19,7 +19,7 @@ class CreateStaffTable extends Migration
             $table->string('nama');
             $table->string('no_telp');
             $table->string('alamat');
-            $table->integer('departement_id');
+            $table->integer('department_id')->default(0)->unsigned()->index();
         });
     }
 

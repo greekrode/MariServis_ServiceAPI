@@ -13,11 +13,11 @@ class CreateServiceStaffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_staffs', function (Blueprint $table) {
+        Schema::create('service_staff', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('staff_id');
-            $table->integer('service_id');
+            $table->integer('staff_id')->default(0);
+            $table->integer('service_id')->default(0);
 
         });
     }
@@ -29,6 +29,6 @@ class CreateServiceStaffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_staffs');
+        Schema::dropIfExists('service_staff');
     }
 }

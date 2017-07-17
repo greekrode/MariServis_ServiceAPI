@@ -79,8 +79,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                      Laravel
                 </div>
+
+                @if (Auth::check())
+                    Laravel, userId: {{ Auth::user()->id }}
+                @endif
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
