@@ -13,7 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $this->grantIfRole('ROLE_ADMIN');
+
+        $categories = Category::get();
+
+        return response()->json($bars->toArray());
     }
 
     /**
@@ -34,7 +38,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category -> category = $request->input('category');
+        $category-> save();
+
+        return response()->json($category);
     }
 
     /**

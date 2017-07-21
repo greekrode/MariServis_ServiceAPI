@@ -4,8 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -45,7 +47,29 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if ($request->expectsJson()){
+            $e = $this->prepareException($exception);
+            if($e instanceof AuthenticationException){
+                return response()->json(['error'=>'Unauthenticated.'], 401);
+            } elseif ($e instanceof ValidationException){
+                $errors = $e->validator->errors()->getMessages();
+                return response()->json($errors, 422);
+            } elseif ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+                return response()->json(['token_expired'], $e->getStatusCode());
+            } elseif ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+                return response()->json(['token_invalid'], $e->getStatusCode());
+            } elseif ($e instanceof AccessDeniedHttpException) {
+                return response()->json (['error' => $e->getMessage()], $e->getStatusCode());
+            } else{
+                return response()->json(['error' => 'Internal Server Error'], 500);
+            }
+        }
+
+        
+
+    return parent::render($request, $e);
+
+    return parent::render($request, $exception);
     }
 
     /**

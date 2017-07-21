@@ -27,9 +27,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
+    /**redirect users after login.
      *
+     * Where to 
      * @var string
      */
     protected $redirectTo = '/home';
