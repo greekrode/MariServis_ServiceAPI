@@ -42,13 +42,14 @@ Route::group(['prefix' => 'v1'], function() {
     //Route::resource('/categories', 'CategoryController', ['as' => 'api.v1', 'except' => ['create', 'edit']]);
 
     //TEST FOR .../users?id=
-    Route::get('/users', function(Request $request) {
-        $id = $request->query("id");
+//    Route::get('/users', function(Request $request) {
+//        $id = $request->query("id");
+//
+//        if (isset($id)) {
+//            return "SUCCESS -> .../users?id=" . $id;
+//        }
+//    });
 
-        if (isset($id)) {
-            return "SUCCESS -> .../users?id=" . $id;
-        }
-    });
 
     Route::group(['middleware' => ['custom.verify.jwt.auth']], function () {
         Route::get('/user', [
