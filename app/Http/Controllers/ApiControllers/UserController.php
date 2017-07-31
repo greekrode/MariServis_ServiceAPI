@@ -46,6 +46,10 @@ class UserController extends Controller
           'no_telp' => $request['phoneNumber']
         ]);
 
+        $user->userimage()->create([
+           'image' => $request['path']
+        ]);
+
         return response()->json(['status'=>true,'message'=>'User created successfully','data'=>$user]);
     }
 
