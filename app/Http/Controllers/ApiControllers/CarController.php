@@ -46,9 +46,11 @@ class CarController extends Controller
      *   ),
      *   @SWG\Parameter(
      *       name="Authorization",
+     *       description="e.g : Bearer (space) "your_token_here"(without quotation) ",
      *       in="header",
      *       required=true,
-     *       type="string"
+     *       type="string",
+     *       default="Bearer "
      *   )
      * )
      */
@@ -68,10 +70,10 @@ class CarController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function create()
-    // {
-    //
-    // }
+     public function create()
+     {
+
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -81,55 +83,61 @@ class CarController extends Controller
      */
     /**
      * @SWG\Post(
-     *   path="/api/v1/cars",
-     *   summary="Add new Car resource.",
-     *   produces={"application/json"},
-     *   consumes={"application/json"},
-     *   tags={"cars"},
-     *   @SWG\Response(
-     *       response=200,
-     *       description="Successfully added data",
-     *   ),
-     *   @SWG\Response(
-     *       response=401,
-     *       description="Unauthorized action.",
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Authorization",
-     *       in="header",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Nama",
-     *       in="body",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Nama",
-     *       in="body",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Jenis",
-     *       in="body",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="No_plat",
-     *       in="body",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Model",
-     *       in="body",
-     *       required=true,
-     *       type="string"
-     *   ),
+     *      path="/api/v1/car",
+     *      summary="Add new Car.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"cars"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="New Car has successfully added.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/car")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Car object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="jenis",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="no_plat",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="model",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="customer_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
      * )
      */
 
@@ -154,35 +162,45 @@ class CarController extends Controller
 
     /**
      * @SWG\Get(
-     *   path="/api/v1/cars/{id}",
-     *   summary="Find the specific car of Car collection",
-     *   consumes={"application/json"} ,
-     *   produces={"application/json"} ,
-     *   tags={"cars"},
-     *   @SWG\Response(
-     *       response=200,
-     *       description="Cars resource found.",
-     *   ),
-     *   @SWG\Response(
-     *       response=401,
-     *       description="Unauthorized action.",
-     *   ),
-     *   @SWG\Response(
-     *       response=404,
-     *       description="Resource not found.",
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Authorization",
-     *       in="header",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="id",
-     *       in="path",
-     *       required=true,
-     *       type="integer"
-     *   ),
+     *      path="/api/v1/car/{id}",
+     *      summary="Find Car by ID.",
+     *      produces={"application/json"},
+     *      tags={"cars"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Data has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/car")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Category not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="Example = Bearer(space)'your_token'",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the categoryId",
+     *           required=true,
+     *           type="integer"
+     *      )
      * )
      */
 

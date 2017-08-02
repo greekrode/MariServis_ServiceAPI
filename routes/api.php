@@ -15,40 +15,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// make json return with "data: {...}"
-//App::bind('League\Fractal\Serializer\SerializerAbstract', 'League\Fractal\Serializer\DataArraySerializer');
-// TESTING JWTAuth
+
 Route::post('/auth/register', 'ApiControllers\UserController@register');
 Route::post('/auth/login', 'ApiControllers\UserController@login');
 
-
-// Route::get('/user/refresh_token', [
-//   'middleware' => ['jwt.refresh'],
-//   'as' => 'refresh_token',
-//   'uses' => 'UserController@getToken'
-// ]);
-
-
-// Route::get('/refresh_token/user', [
-//   'as' => 'refresh_token',
-//   'uses' => 'UserController@refresh'
-// ]);
 
 
 
 // NOTE:
 
 Route::group(['prefix' => 'v1'], function() {
-    //Route::resource('/categories', 'CategoryController', ['as' => 'api.v1', 'except' => ['create', 'edit']]);
 
-    //TEST FOR .../users?id=
-//    Route::get('/users', function(Request $request) {
-//        $id = $request->query("id");
-//
-//        if (isset($id)) {
-//            return "SUCCESS -> .../users?id=" . $id;
-//        }
-//    });
 
 
     Route::group(['middleware' => ['custom.verify.jwt.auth']], function () {
