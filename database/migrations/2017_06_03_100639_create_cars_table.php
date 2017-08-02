@@ -11,6 +11,8 @@ class CreateCarsTable extends Migration
      *
      * @return void
      */
+
+
     public function up()
     {
         Schema::create('cars', function (Blueprint $table) {

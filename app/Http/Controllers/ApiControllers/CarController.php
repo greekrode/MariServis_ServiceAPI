@@ -184,20 +184,20 @@ class CarController extends Controller
      *      ),
      *      @SWG\Response(
      *          response=404,
-     *          description="Category not found."
+     *          description="Car not found."
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
-     *          description="Example = Bearer(space)'your_token'",
+     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
      *          in="header",
      *          required=true,
      *          type="string",
-     *          default="Bearer",
+     *          default="Bearer ",
      *      ),
      *      @SWG\Parameter(
      *           name="id",
      *           in="path",
-     *           description="Please enter the categoryId",
+     *           description="Please enter the ID of the car",
      *           required=true,
      *           type="integer"
      *      )
@@ -232,6 +232,82 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/car/{id}",
+     *      summary="Update the Car resource.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"cars"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Car data has been successfully updated.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/category")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Car not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the car",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Car object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="jenis",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="no_plat",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="model",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="customer_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
+     * )
+     */
+
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -248,36 +324,40 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     /**
      * @SWG\Delete(
-     *   path="/api/v1/cars/{id}",
-     *   summary="Removes the collection of Car resource.",
-     *   produces={"application/json"} ,
-     *   tags={"cars"},
-     *   @SWG\Response(
-     *       response=200,
-     *       description="Mediafiles resource deleted.",
-     *   ),
-     *   @SWG\Response(
-     *       response=401,
-     *       description="Unauthozied action.",
-     *   ),
-     *   @SWG\Response(
-     *       response=404,
-     *       description="Resource not found.",
-     *   ),
-     *   @SWG\Parameter(
-     *       name="Authorization",
-     *       in="header",
-     *       required=true,
-     *       type="string"
-     *   ),
-     *   @SWG\Parameter(
-     *       name="id",
-     *       in="path",
-     *       required=true,
-     *       type="integer"
-     *   ),
+     *      path="/api/v1/car/{id}",
+     *      summary="Remove the Carresource.",
+     *      produces={"application/json"},
+     *      tags={"cars"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Car resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Carnot found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the car",
+     *           required=true,
+     *           type="integer"
+     *      ),
      * )
      */
     public function destroy($id)
