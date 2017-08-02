@@ -33,21 +33,48 @@ class UserController extends Controller
         // $this->middleware('auth');
     }
 
+    /**
+     * @SWG\Post(
+     *   path="/api/auth/register",
+     *   summary="Register User",
+     *   produces={"application/json"},
+     *   consumes={"application/json"},
+     *   tags={"register"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="User registered.",
+     *       @SWG\Property(
+     *           property="token",
+     *           type="string"
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action."
+     *   ),
+     *   @SWG\Parameter(
+     *       name="body",
+     *       in="body",
+     *       required=true,
+     *       type="string",
+     *       @SWG\Schema(
+     *           type="string"
+     *    )
+     *   )
+     * )
+     */
+
     public function register(UserRequest $request){
         $user = $this->user->create([
           'username' => ucfirst($request->get('username')),
           'email' => strtolower($request->get('email')),
-          'password' => bcrypt($request->get('password'))
+          'password' => bcrypt($request->get('password')),
         ]);
 
         $user->customer()->create([
           'nama' => ucfirst($request['name']),
           'alamat' => ucfirst($request['address']),
           'no_telp' => $request['phoneNumber']
-        ]);
-
-        $user->userimage()->create([
-           'image' => $request['path']
         ]);
 
         return response()->json(['status'=>true,'message'=>'User created successfully','data'=>$user]);

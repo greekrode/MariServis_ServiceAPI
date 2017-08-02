@@ -14,6 +14,7 @@ class UserTransformer extends TransformerAbstract {
           'id' => (int) $user->id,
           'username' => (String) $user->username,
           'email' => (String) $user->email,
+          'image' => (String) $user->path,
           'token' => $user->token,
           'customer' => [
               'url' => (String) route('api.v1.customers.show', ['id' => $user->customer->id]),

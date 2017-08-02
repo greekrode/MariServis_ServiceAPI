@@ -182,7 +182,9 @@ return [
         // Larasponse
         'Sorskod\Larasponse\LarasponseServiceProvider',
 
+        //Swagger DarkaOnline
 
+        L5Swagger\L5SwaggerServiceProvider::class,
 
     ],
 
