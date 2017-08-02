@@ -4,7 +4,36 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+/**
+ * @SWG\Definition(
+ *   definition="user",
+ *   @SWG\Property(
+ *       property="id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="username",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="email",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="password",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="created_at",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="updated_at",
+ *       type="string"
+ *   ),
+ * )
+ */
 class User extends Authenticatable
 {
     use Notifiable;
