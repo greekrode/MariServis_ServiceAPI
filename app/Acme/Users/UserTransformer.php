@@ -20,6 +20,7 @@ class UserTransformer extends TransformerAbstract {
               'url' => (String) route('api.v1.customers.show', ['id' => $user->customer->id]),
               'name' => $user->customer->nama,
           ],
+
         ];
     }
 }

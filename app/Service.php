@@ -3,7 +3,53 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+ * @SWG\Definition(
+ *   definition="service",
+ *   @SWG\Property(
+ *       property="id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="ref_no",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="customer_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="car_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="payment_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="status_transaksi_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="status_service_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="created_at",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="updated_at",
+ *       type="string"
+ *   ),
+ * )
+ */
 class Service extends Model
 {
     protected $fillable = [
@@ -17,6 +63,7 @@ class Service extends Model
 
 
     protected $hidden = [
+      "created_at",
       "updated_at",
       // "total_biaya",
       // "pivot",

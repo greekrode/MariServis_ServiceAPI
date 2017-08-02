@@ -3,7 +3,41 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+ * @SWG\Definition(
+ *   definition="customer",
+ *   @SWG\Property(
+ *       property="id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="nama",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="alamat",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="no_telp",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="created_at",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="updated_at",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
+ *       property="user_id",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ * )
+ */
 class Customer extends Model
 {
     protected $fillable = [
