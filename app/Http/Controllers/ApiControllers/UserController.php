@@ -39,14 +39,10 @@ class UserController extends Controller
      *   summary="Register User",
      *   produces={"application/json"},
      *   consumes={"application/json"},
-     *   tags={"register"},
+     *   tags={"user"},
      *   @SWG\Response(
      *       response=200,
-     *       description="User registered.",
-     *       @SWG\Property(
-     *           property="token",
-     *           type="string"
-     *       )
+     *       description="User registered."
      *   ),
      *   @SWG\Response(
      *       response=401,
@@ -58,7 +54,30 @@ class UserController extends Controller
      *       required=true,
      *       type="string",
      *       @SWG\Schema(
+     *                *       @SWG\Property(
+     *           property="username",
      *           type="string"
+     *       ),
+     *       @SWG\Property(
+     *           property="email",
+     *           type="string"
+     *       ),
+     *       @SWG\Property(
+     *           property="password",
+     *           type="string"
+     *       ),
+     *       @SWG\Property(
+     *           property="name",
+     *           type="string"
+     *       ),
+     *       @SWG\Property(
+     *           property="address",
+     *           type="string"
+     *       ),
+     *       @SWG\Property(
+     *           property="phoneNumber",
+     *           type="string"
+     *       ),
      *    )
      *   )
      * )
@@ -77,9 +96,43 @@ class UserController extends Controller
           'no_telp' => $request['phoneNumber']
         ]);
 
+
         return response()->json(['status'=>true,'message'=>'User created successfully','data'=>$user]);
     }
 
+    /**
+     * @SWG\Post(
+     *   path="/api/auth/login",
+     *   summary="User Login",
+     *   produces={"application/json"},
+     *   consumes={"application/json"},
+     *   tags={"user"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="User has been log in successfully",
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action."
+     *   ),
+     *   @SWG\Parameter(
+     *       name="body",
+     *       in="body",
+     *       required=true,
+     *       type="string",
+     *       @SWG\Schema(
+     *          @SWG\Property(
+     *              property="email",
+     *              type="string"
+     *          ),
+     *          @SWG\Property(
+     *              property="password",
+     *              type="string"
+     *          ),
+     *    )
+     *   )
+     * )
+     */
     public function login(Request $request){// HERE IS THE PROCESS WHEN "VALIDATE CREDENTIALS" AND JWT "GENERATE A TOKEN" FOR USER
         $credentials = $request->only('email', 'password');
         $tokenPlaceholder = null;

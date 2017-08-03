@@ -13,6 +13,7 @@ use App\Category;
 use App\Acme\Categories\CategoryTransformer;
 use App\Extensions\Serializers\CustomSerializer;
 
+
 class CategoryController extends Controller
 {
     private $manager;
@@ -25,6 +26,35 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/categories",
+     *   summary="Retrieves the collection of Categories resource.",
+     *   produces={"application/json"},
+     *   tags={"categories"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Categories collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/category")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
      */
     public function index()
     {
@@ -52,6 +82,49 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Post(
+     *      path="/api/v1/categories",
+     *      summary="Add new Category.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"categories"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="New Category has successfully added.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/category")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Category object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -67,6 +140,50 @@ class CategoryController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/categories/{id}",
+     *      summary="Find Category by ID.",
+     *      produces={"application/json"},
+     *      tags={"categories"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Data has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/category")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Category not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the category",
+     *           required=true,
+     *           type="integer"
+     *      )
+     * )
      */
     public function show($id)
     {
@@ -96,6 +213,63 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/categories/{id}",
+     *      summary="Update the Category resource.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"categories"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Category data has been successfully updated.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/category")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Category not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the category",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Category object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -111,6 +285,42 @@ class CategoryController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/v1/categories/{id}",
+     *      summary="Remove the Category resource.",
+     *      produces={"application/json"},
+     *      tags={"categories"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Category resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Category not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the category",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     * )
      */
     public function destroy($id)
     {

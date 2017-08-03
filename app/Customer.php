@@ -31,11 +31,6 @@ use Illuminate\Database\Eloquent\Model;
  *       property="updated_at",
  *       type="string"
  *   ),
- *   @SWG\Property(
- *       property="user_id",
- *       type="integer",
- *       format="int32"
- *   ),
  * )
  */
 class Customer extends Model

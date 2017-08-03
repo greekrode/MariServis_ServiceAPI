@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  *       type="string"
  *   ),
  *   @SWG\Property(
- *       property="created_at",
+ *       property="updated_at",
  *       type="string"
  *   ),
  * )

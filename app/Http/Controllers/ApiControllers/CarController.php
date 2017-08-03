@@ -46,7 +46,7 @@ class CarController extends Controller
      *   ),
      *   @SWG\Parameter(
      *       name="Authorization",
-     *       description="e.g : Bearer (space) "your_token_here"(without quotation) ",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
      *       in="header",
      *       required=true,
      *       type="string",
@@ -83,7 +83,7 @@ class CarController extends Controller
      */
     /**
      * @SWG\Post(
-     *      path="/api/v1/car",
+     *      path="/api/v1/cars",
      *      summary="Add new Car.",
      *      produces={"application/json"},
      *      consumes={"application/json"},
@@ -102,7 +102,7 @@ class CarController extends Controller
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
-     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
      *          in="header",
      *          required=true,
      *          type="string",
@@ -162,7 +162,7 @@ class CarController extends Controller
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/car/{id}",
+     *      path="/api/v1/cars/{id}",
      *      summary="Find Car by ID.",
      *      produces={"application/json"},
      *      tags={"cars"},
@@ -188,7 +188,7 @@ class CarController extends Controller
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
-     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
      *          in="header",
      *          required=true,
      *          type="string",
@@ -235,7 +235,7 @@ class CarController extends Controller
 
     /**
      * @SWG\Put(
-     *      path="/api/v1/car/{id}",
+     *      path="/api/v1/cars/{id}",
      *      summary="Update the Car resource.",
      *      produces={"application/json"},
      *      consumes={"application/json"},
@@ -262,7 +262,7 @@ class CarController extends Controller
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
-     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
      *          in="header",
      *          required=true,
      *          type="string",
@@ -327,8 +327,8 @@ class CarController extends Controller
 
     /**
      * @SWG\Delete(
-     *      path="/api/v1/car/{id}",
-     *      summary="Remove the Carresource.",
+     *      path="/api/v1/cars/{id}",
+     *      summary="Remove the Car resource.",
      *      produces={"application/json"},
      *      tags={"cars"},
      *      @SWG\Response(
@@ -345,7 +345,7 @@ class CarController extends Controller
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
-     *          description="e.g : Bearer(space) "your_token_here" (without quotation) ",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
      *          in="header",
      *          required=true,
      *          type="string",

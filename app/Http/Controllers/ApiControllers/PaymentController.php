@@ -25,6 +25,36 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/customers",
+     *   summary="Retrieves the collection of Customers resource.",
+     *   produces={"application/json"},
+     *   tags={"customers"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Customers collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/customer")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
+     */
+
     public function index()
     {
         $payments = Payment::all();

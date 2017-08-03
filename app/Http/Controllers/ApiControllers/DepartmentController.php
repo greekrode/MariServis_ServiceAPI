@@ -25,6 +25,36 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/departments",
+     *   summary="Retrieves the collection of Departments resource.",
+     *   produces={"application/json"},
+     *   tags={"departments"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Departments collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/department")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
+     */
+
     public function index()
     {
         $departments = Department::all()->sortBy('id');
@@ -51,6 +81,49 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Post(
+     *      path="/api/v1/departments",
+     *      summary="Add new Department.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"departments"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="New Department has successfully added.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/department")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Department object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -66,6 +139,43 @@ class DepartmentController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/departments/{id}",
+     *      summary="Find Department by ID",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"departments"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Data has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/department")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the department",
+     *           required=true,
+     *           type="integer"
+     *      )
+     * )
      */
     public function show($id)
     {
@@ -95,6 +205,64 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/departments/{id}",
+     *      summary="Update the Inventory resource.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"departments"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Department data has been successfully updated.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/department")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Department not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the department",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Department object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -110,6 +278,42 @@ class DepartmentController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/v1/departments/{id}",
+     *      summary="Remove the Department resource.",
+     *      produces={"application/json"},
+     *      tags={"departments"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Inventory resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Inventory not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Inventory",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     * )
      */
     public function destroy($id)
     {

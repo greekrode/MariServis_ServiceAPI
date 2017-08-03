@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *       format="int32"
  *   ),
  *   @SWG\Property(
- *       property="nama",
+ *       property="metode_pembayaran",
  *       type="string"
  *   ),
  *   @SWG\Property(
@@ -29,7 +29,7 @@ class Payment extends Model
 {// payment method here
 
     protected $fillable = [
-      'nama'
+      'metode_pembayaran'
     ];
 
     protected $hidden =[

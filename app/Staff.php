@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @SWG\Definition(
- *   definition="car",
+ *   definition="staff",
  *   @SWG\Property(
  *       property="id",
  *       type="integer",

@@ -61,8 +61,4 @@ class User extends Authenticatable
         return $this->hasOne("App\Customer", "user_id");
     }
 
-    public function userimage(){
-        return $this->hasOne("App\UserImage","user_id");
-    }
-
 }

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @SWG\Definition(
- *   definition="department",
+ *   definition="inventory",
  *   @SWG\Property(
  *       property="id",
  *       type="integer",
