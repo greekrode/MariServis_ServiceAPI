@@ -4,14 +4,9 @@ namespace App\Acme\Customers;
 
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Manager;
-use League\Fractal\Resource\Item;
-use League\Fractal\Resource\Collection;
 
-use App\Acme\Customers\CustomerTransformer;
 use App\Extensions\Serializers\CustomSerializer;
 use App\Customer;
-use App\Service;
-use App\Acme\Services\ServiceTransformer;
 use Auth;
 
 class CustomerTransformer extends TransformerAbstract

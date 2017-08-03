@@ -309,7 +309,7 @@ class ServiceTypeController extends Controller
      *      path="/api/v1/service_types/{id}",
      *      summary="Remove the Service type resource.",
      *      produces={"application/json"},
-     *      tags={"serice_types"},
+     *      tags={"service_types"},
      *      @SWG\Response(
      *          response=204,
      *          description="Service type resource deleted."
