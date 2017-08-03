@@ -246,7 +246,7 @@ class ServiceTypeController extends Controller
      *      ),
      *      @SWG\Response(
      *          response=404,
-     *          description="Payment not found."
+     *          description="Service type not found."
      *      ),
      *      @SWG\Parameter(
      *          name="Authorization",
@@ -309,7 +309,7 @@ class ServiceTypeController extends Controller
      *      path="/api/v1/service_types/{id}",
      *      summary="Remove the Service type resource.",
      *      produces={"application/json"},
-     *      tags={"payments"},
+     *      tags={"serice_types"},
      *      @SWG\Response(
      *          response=204,
      *          description="Service type resource deleted."

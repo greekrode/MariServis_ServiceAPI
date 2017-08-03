@@ -155,7 +155,7 @@ class StaffController extends Controller
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/staffs{id}",
+     *      path="/api/v1/staffs/{id}",
      *      summary="Find staff by ID.",
      *      produces={"application/json"},
      *      tags={"staffs"},
