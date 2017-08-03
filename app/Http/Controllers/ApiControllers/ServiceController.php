@@ -28,6 +28,35 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/services",
+     *   summary="Retrieves the collection of Services resource.",
+     *   produces={"application/json"},
+     *   tags={"services"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Services collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/service")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
+     */
     public function index()
     {
         $services = Service::all();
@@ -53,6 +82,74 @@ class ServiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Post(
+     *      path="/api/v1/services",
+     *      summary="Add new Service.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"services"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="New Service has successfully added.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/service")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="ref_no",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="customer_id",
+     *                   type="integer",
+     *                   format="in3t2"
+     *               ),
+     *               @SWG\Property(
+     *                   property="car_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="payment_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="status_transaksi_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="status_service_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
+     * )
      */
     public function store(ServiceRequest $request)
     {
@@ -117,6 +214,50 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/services/{id}",
+     *      summary="Find Service by ID.",
+     *      produces={"application/json"},
+     *      tags={"services"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Data has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/service")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service",
+     *           required=true,
+     *           type="integer"
+     *      )
+     * )
+     */
     public function show($id)
     {
         $service = Service::findOrFail($id);
@@ -145,6 +286,89 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/services/{id}",
+     *      summary="Update the Service resource.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"services"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Service data has been successfully updated.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/service")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the service",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     *      @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="ref_no",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="customer_id",
+     *                   type="integer",
+     *                   format="in3t2"
+     *               ),
+     *               @SWG\Property(
+     *                   property="car_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="payment_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="status_transaksi_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *               @SWG\Property(
+     *                   property="status_service_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
+     * )
+     */
     public function update(ServiceRequest $request, $id)
     {
         $input = $request->all();
@@ -160,6 +384,42 @@ class ServiceController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/v1/services/{id}",
+     *      summary="Remove the Service resource.",
+     *      produces={"application/json"},
+     *      tags={"customers"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Service resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     * )
      */
     public function destroy($id)
     {

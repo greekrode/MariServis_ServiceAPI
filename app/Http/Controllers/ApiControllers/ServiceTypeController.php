@@ -25,6 +25,35 @@ class ServiceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/service_types",
+     *   summary="Retrieves the collection of Service types resource.",
+     *   produces={"application/json"},
+     *   tags={"service_types"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Service type collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/servicetype")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
+     */
     public function index()
     {
         $serviceTypes = ServiceType::all();
@@ -51,6 +80,58 @@ class ServiceTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Post(
+     *      path="/api/v1/service_types",
+     *      summary="Add new Service type.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"service_types"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="New Service type has successfully added.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/servicetype")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service type object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="harga",
+     *                   type="decimal"
+     *               ),
+     *               @SWG\Property(
+     *                   property="department_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
+     * )
+     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -66,6 +147,50 @@ class ServiceTypeController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/service_types/{id}",
+     *      summary="Find Service type by ID.",
+     *      produces={"application/json"},
+     *      tags={"service_types"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Service type has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/servicetype")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service tpye not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service type",
+     *           required=true,
+     *           type="integer"
+     *      )
+     * )
      */
     public function show($id)
     {
@@ -95,6 +220,73 @@ class ServiceTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/service_types/{id}",
+     *      summary="Add new Service type.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"service_types"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Service type data has been successfully updated.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/servicetype")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Payment not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service type",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service type object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               ),
+     *               @SWG\Property(
+     *                   property="harga",
+     *                   type="decimal"
+     *               ),
+     *               @SWG\Property(
+     *                   property="department_id",
+     *                   type="integer",
+     *                   format="int32"
+     *               ),
+     *           )
+     *      )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -110,6 +302,42 @@ class ServiceTypeController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/v1/service_types/{id}",
+     *      summary="Remove the Service type resource.",
+     *      produces={"application/json"},
+     *      tags={"payments"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Service type resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service type not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service type",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     * )
      */
     public function destroy($id)
     {

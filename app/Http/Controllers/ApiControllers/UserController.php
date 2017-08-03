@@ -78,6 +78,10 @@ class UserController extends Controller
      *           property="phoneNumber",
      *           type="string"
      *       ),
+     *       @SWG\Property(
+     *           property="path",
+     *           type="string"
+     *       ),
      *    )
      *   )
      * )
@@ -88,6 +92,7 @@ class UserController extends Controller
           'username' => ucfirst($request->get('username')),
           'email' => strtolower($request->get('email')),
           'password' => bcrypt($request->get('password')),
+          'path' => $request->image->store('public')
         ]);
 
         $user->customer()->create([

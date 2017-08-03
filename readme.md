@@ -1,6 +1,6 @@
 ## Mari Servis API 
 
-API Model of Mari Serivs Bengkel
+API Model of Mari Servis Bengkel
 
 | Nama | NIM |
 | ------------- | ------------- |

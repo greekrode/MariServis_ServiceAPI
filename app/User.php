@@ -25,6 +25,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *       type="string"
  *   ),
  *   @SWG\Property(
+ *       property="path",
+ *       type="string"
+ *   ),
+ *   @SWG\Property(
  *       property="created_at",
  *       type="string"
  *   ),
@@ -44,7 +48,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password','path'
     ];
 
     /**

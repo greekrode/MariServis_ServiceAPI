@@ -67,15 +67,15 @@ class CustomerController extends Controller
       return $this->manager->createData($resource)->toArray();
   }
 
-  // /**
-  //  * Show the form for creating a new resource.
-  //  *
-  //  * @return \Illuminate\Http\Response
-  //  */
-  // public function create()
-  // {
-  //     //
-  // }
+   /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function create()
+   {
+       //
+   }
 
    /**
     * Store a newly created resource in storage.
@@ -153,7 +153,7 @@ class CustomerController extends Controller
 
     /**
      * @SWG\Get(
-     *      path="/api/v1/customer/{id}",
+     *      path="/api/v1/customers/{id}",
      *      summary="Find customer by ID.",
      *      produces={"application/json"},
      *      tags={"customers"},

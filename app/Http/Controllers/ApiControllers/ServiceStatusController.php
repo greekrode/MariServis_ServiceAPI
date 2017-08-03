@@ -25,6 +25,35 @@ class ServiceStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Get(
+     *   path="/api/v1/service_statuses",
+     *   summary="Retrieves the collection of Service status resource.",
+     *   produces={"application/json"},
+     *   tags={"service_statuses"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="Transaction statuses collection.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/servicestatus")
+     *       )
+     *   ),
+     *   @SWG\Response(
+     *       response=401,
+     *       description="Unauthorized action.",
+     *   ),
+     *   @SWG\Parameter(
+     *       name="Authorization",
+     *       description="e.g : Bearer (space) 'your_token_here'(without quotation) ",
+     *       in="header",
+     *       required=true,
+     *       type="string",
+     *       default="Bearer "
+     *   )
+     * )
+     */
     public function index()
     {
         $serviceStatuses = ServiceStatus::all();
@@ -51,6 +80,49 @@ class ServiceStatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Post(
+     *   path="/api/v1/service_statuses",
+     *   summary="Add new Service status resource.",
+     *   consumes={"application/json"},
+     *   produces={"application/json"},
+     *   tags={"service_statuses"},
+     *   @SWG\Response(
+     *       response=200,
+     *       description="New Service status has successfully added.",
+     *       @SWG\Schema(
+     *           type="array",
+     *           @SWG\Items(ref="#/definitions/servicestatus")
+     *       )
+     *   ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service status object that needs to be added to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -66,6 +138,50 @@ class ServiceStatusController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Get(
+     *      path="/api/v1/service_statuses/{id}",
+     *      summary="Find Service status by ID.",
+     *      produces={"application/json"},
+     *      tags={"service_statuses"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Service status has been founded.",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/servicestatus")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=400,
+     *          description="Invalid ID."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Service status not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service status",
+     *           required=true,
+     *           type="integer"
+     *      )
+     * )
      */
     public function show($id)
     {
@@ -95,6 +211,49 @@ class ServiceStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @SWG\Put(
+     *      path="/api/v1/service_statuses/{id}",
+     *      summary="Add new Service status.",
+     *      produces={"application/json"},
+     *      consumes={"application/json"},
+     *      tags={"service_statuses"},
+     *      @SWG\Response(
+     *          response=200,
+     *          description="The Transaction status data has successfully updated",
+     *          @SWG\Schema(
+     *              type="array",
+     *              @SWG\Items(ref="#/definitions/servicestatus")
+     *          )
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *       @SWG\Parameter(
+     *           name="body",
+     *           in="body",
+     *           required=true,
+     *           description="Service status object that needs to be updated to the database",
+     *           type="string",
+     *           @SWG\Schema(
+     *               @SWG\Property(
+     *                   property="nama",
+     *                   type="string"
+     *               )
+     *           )
+     *      )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -110,6 +269,42 @@ class ServiceStatusController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @SWG\Delete(
+     *      path="/api/v1/service_statuses/{id}",
+     *      summary="Remove the Service status resource.",
+     *      produces={"application/json"},
+     *      tags={"service_statuses"},
+     *      @SWG\Response(
+     *          response=204,
+     *          description="Service status resource deleted."
+     *      ),
+     *      @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action."
+     *      ),
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Transaction status not found."
+     *      ),
+     *      @SWG\Parameter(
+     *          name="Authorization",
+     *          description="e.g : Bearer(space) 'your_token_here' (without quotation) ",
+     *          in="header",
+     *          required=true,
+     *          type="string",
+     *          default="Bearer ",
+     *      ),
+     *      @SWG\Parameter(
+     *           name="id",
+     *           in="path",
+     *           description="Please enter the ID of the Service status",
+     *           required=true,
+     *           type="integer"
+     *      ),
+     * )
      */
     public function destroy($id)
     {

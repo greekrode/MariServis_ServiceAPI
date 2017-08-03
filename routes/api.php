@@ -37,7 +37,9 @@ Route::group(['prefix' => 'v1'], function() {
         // REMEMBER: Route::resource() -> defines your controller as a "resourceful controller", which have "limited amount of actions".
         // Categories
         Route::resource('/categories', 'ApiControllers\CategoryController', ['as' => 'api.v1', 'except' => ['create', 'edit']]);
-        // Route::get('/categories/test', function() {}); // <- WON'T WORK BECAUSE ABOVE IS Route::resource('/categories', ...);
+
+        //Customers
+        Route::resource('/customers','ApiControllers\CustomerController',['as' => 'api.v1', 'except' => ['create', 'edit']]);
 
         // Inventory
         Route::resource('/inventories', 'ApiControllers\InventoryController', ['as' => 'api.v1', 'except' => ['create', 'edit']]);
@@ -69,8 +71,6 @@ Route::group(['prefix' => 'v1'], function() {
         // TransactionStatus
         Route::resource('/transaction_statuses', 'ApiControllers\TransactionStatusController', ['as' => 'api.v1', 'except' => ['create', 'edit']]);
 
-        // StatusKendaraan
-        //Route::resource('/status', 'StatusController', ['except' => ['create', 'edit']]);
     });
 
 

@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  *       type="string"
  *   ),
  *   @SWG\Property(
- *       property="nalamat",
+ *       property="alamat",
  *       type="string"
  *   ),
  *   @SWG\Property(
@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  *       type="string"
  *   ),
  *   @SWG\Property(
- *       property="customer_id",
+ *       property="department_id",
  *       type="integer",
  *       format="int32"
  *   ),
