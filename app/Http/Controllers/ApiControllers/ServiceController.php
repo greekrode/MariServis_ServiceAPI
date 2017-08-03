@@ -391,7 +391,7 @@ class ServiceController extends Controller
      *      path="/api/v1/services/{id}",
      *      summary="Remove the Service resource.",
      *      produces={"application/json"},
-     *      tags={"customers"},
+     *      tags={"services"},
      *      @SWG\Response(
      *          response=204,
      *          description="Service resource deleted."
