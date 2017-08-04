@@ -12,16 +12,17 @@ use Illuminate\Database\Eloquent\Model;
  *       format="int32"
  *   ),
  *   @SWG\Property(
- *       property="ref_no",
- *       type="string"
- *   ),
- *   @SWG\Property(
- *       property="customer_id",
+ *       property="inventory_ids",
  *       type="integer",
  *       format="int32"
  *   ),
  *   @SWG\Property(
- *       property="car_id",
+ *       property="inventory_qtys",
+ *       type="integer",
+ *       format="int32"
+ *   ),
+ *   @SWG\Property(
+ *       property="service_type_id",
  *       type="integer",
  *       format="int32"
  *   ),
@@ -31,12 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  *       format="int32"
  *   ),
  *   @SWG\Property(
- *       property="status_transaksi_id",
- *       type="integer",
- *       format="int32"
- *   ),
- *   @SWG\Property(
- *       property="status_service_id",
+ *       property="user_id",
  *       type="integer",
  *       format="int32"
  *   ),

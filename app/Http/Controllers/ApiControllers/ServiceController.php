@@ -118,35 +118,31 @@ class ServiceController extends Controller
      *           description="Service object that needs to be added to the database",
      *           type="string",
      *           @SWG\Schema(
-     *               @SWG\Property(
-     *                   property="ref_no",
-     *                   type="string"
-     *               ),
-     *               @SWG\Property(
-     *                   property="customer_id",
-     *                   type="integer",
-     *                   format="in3t2"
-     *               ),
-     *               @SWG\Property(
-     *                   property="car_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="payment_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="status_transaksi_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="status_service_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
+     *   @SWG\Property(
+     *       property="inventory_ids",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="inventory_qtys",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="service_type_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="payment_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="user_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
      *           )
      *      )
      * )
@@ -337,35 +333,31 @@ class ServiceController extends Controller
      *           description="Service object that needs to be updated to the database",
      *           type="string",
      *           @SWG\Schema(
-     *               @SWG\Property(
-     *                   property="ref_no",
-     *                   type="string"
-     *               ),
-     *               @SWG\Property(
-     *                   property="customer_id",
-     *                   type="integer",
-     *                   format="in3t2"
-     *               ),
-     *               @SWG\Property(
-     *                   property="car_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="payment_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="status_transaksi_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
-     *               @SWG\Property(
-     *                   property="status_service_id",
-     *                   type="integer",
-     *                   format="int32"
-     *               ),
+     *   @SWG\Property(
+     *       property="inventory_ids",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="inventory_qtys",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="service_type_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="payment_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
+     *   @SWG\Property(
+     *       property="user_id",
+     *       type="integer",
+     *       format="int32"
+     *   ),
      *           )
      *      )
      * )
