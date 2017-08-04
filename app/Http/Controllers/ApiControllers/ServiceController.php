@@ -168,6 +168,7 @@ class ServiceController extends Controller
                 $service->ref_no =  $ref_no;
                 $service->customer_id = $user->customer->id;
                 $service->payment_id = $request['payment_id'];
+                $service->car_id = $request['car_id'];
                 // $service->status_transaksi_id = $request['status_transaksi_id'];
                 // $service->status_service_id = $request['status_service_id'];
                 $service->save();

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 /**
  * @SWG\Swagger(
  *   basePath="",
- *   host="mariservis.app",
+ *   host="mariservis.dev",
  *   schemes={"http"},
  *   @SWG\Info(
  *       version="1.0",

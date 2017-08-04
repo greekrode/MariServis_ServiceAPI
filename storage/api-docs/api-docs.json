@@ -1,0 +1,3102 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Mari Servis API",
+        "contact": {
+            "name": "RODERICK HALIM",
+            "url": "https://uph.edu"
+        },
+        "version": "1.0"
+    },
+    "host": "mariservis.dev",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/v1/cars": {
+            "get": {
+                "tags": [
+                    "cars"
+                ],
+                "summary": "Retrieves the collection of Cars resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cars collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/car"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "cars"
+                ],
+                "summary": "Add new Car.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Car object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "jenis": {
+                                    "type": "string"
+                                },
+                                "no_plat": {
+                                    "type": "string"
+                                },
+                                "model": {
+                                    "type": "string"
+                                },
+                                "customer_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Car has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/car"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/cars/{id}": {
+            "get": {
+                "tags": [
+                    "cars"
+                ],
+                "summary": "Find Car by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the car",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/car"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Car not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "cars"
+                ],
+                "summary": "Update the Car resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the car",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Car object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "jenis": {
+                                    "type": "string"
+                                },
+                                "no_plat": {
+                                    "type": "string"
+                                },
+                                "model": {
+                                    "type": "string"
+                                },
+                                "customer_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Car data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Car not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "cars"
+                ],
+                "summary": "Remove the Car resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the car",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Car resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Carnot found."
+                    }
+                }
+            }
+        },
+        "/api/v1/categories": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Retrieves the collection of Categories resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Add new Category.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Category object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Category has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/categories/{id}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Find Category by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the category",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Category not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Update the Category resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the category",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Category object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Category data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Category not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Remove the Category resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the category",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Category resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Category not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/customers": {
+            "get": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Retrieves the collection of Customers resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customers collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Add new Customer.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Customer object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "alamat": {
+                                    "type": "string"
+                                },
+                                "no_telp": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Customer has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/customers/{id}": {
+            "get": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Find customer by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the customer",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "customer not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Update the customer resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the customer",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Customer object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Customer data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "customer not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "customers"
+                ],
+                "summary": "Remove the Customer resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Customer",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Customer resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Customer not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/departments": {
+            "get": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "Retrieves the collection of Departments resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Departments collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/department"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "Add new Department.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Department object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Department has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/department"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/departments/{id}": {
+            "get": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "Find Department by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the department",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/department"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "Update the Inventory resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the department",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Department object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Department data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/department"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Department not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "Remove the Department resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Inventory",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Inventory resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Inventory not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/inventories": {
+            "get": {
+                "tags": [
+                    "inventories"
+                ],
+                "summary": "Retrieves the collection of Inventories resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Inventories collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/inventory"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "inventories"
+                ],
+                "summary": "Add new Inventory.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Inventory object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "harga": {
+                                    "type": "decimal"
+                                },
+                                "qty": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "category_id": {
+                                    "type": "integer",
+                                    "format": "in32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Inventory has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/inventory"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/inventories/{id}": {
+            "get": {
+                "tags": [
+                    "inventories"
+                ],
+                "summary": "Find Inventory by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Inventory",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/inventory"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "inventories"
+                ],
+                "summary": "Update the Category resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Inventory",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Inventory object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "harga": {
+                                    "type": "decimal"
+                                },
+                                "qty": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "category_id": {
+                                    "type": "integer",
+                                    "format": "in32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Inventory data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/inventory"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Inventory not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "inventories"
+                ],
+                "summary": "Remove the Inventory resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the category",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Inventory resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Inventory not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/payments": {
+            "get": {
+                "tags": [
+                    "payments"
+                ],
+                "summary": "Retrieves the collection of Payments resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customers collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/payment"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "payments"
+                ],
+                "summary": "Add new Payment.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Customer object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "metode_pembayaran": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Payment has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/payment"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/payments/{id}": {
+            "get": {
+                "tags": [
+                    "payments"
+                ],
+                "summary": "Find payment by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the payment",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/payment"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Payment not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "payments"
+                ],
+                "summary": "Add new Payment.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the payment",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Payment object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "metode_pembayaran": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Payment data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/payment"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Payment not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "payments"
+                ],
+                "summary": "Remove the Payment resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Payment",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Payment resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Payment not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/services": {
+            "get": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Retrieves the collection of Services resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Services collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/service"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Add new Service.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "ref_no": {
+                                    "type": "string"
+                                },
+                                "customer_id": {
+                                    "type": "integer",
+                                    "format": "in3t2"
+                                },
+                                "car_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "payment_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "status_transaksi_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "status_service_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Service has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/service"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/services/{id}": {
+            "get": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Find Service by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/service"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Update the Service resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the service",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "ref_no": {
+                                    "type": "string"
+                                },
+                                "customer_id": {
+                                    "type": "integer",
+                                    "format": "in3t2"
+                                },
+                                "car_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "payment_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "status_transaksi_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "status_service_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Service data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/service"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Remove the Service resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Service resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/service_statuses": {
+            "get": {
+                "tags": [
+                    "service_statuses"
+                ],
+                "summary": "Retrieves the collection of Service status resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statuses collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicestatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "service_statuses"
+                ],
+                "summary": "Add new Service status resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service status object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Service status has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicestatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/service_statuses/{id}": {
+            "get": {
+                "tags": [
+                    "service_statuses"
+                ],
+                "summary": "Find Service status by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service status",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service status has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicestatus"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service status not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "service_statuses"
+                ],
+                "summary": "Add new Service status.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service status object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Transaction status data has successfully updated",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicestatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "service_statuses"
+                ],
+                "summary": "Remove the Service status resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service status",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Service status resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Transaction status not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/service_types": {
+            "get": {
+                "tags": [
+                    "service_types"
+                ],
+                "summary": "Retrieves the collection of Service types resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service type collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicetype"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "service_types"
+                ],
+                "summary": "Add new Service type.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service type object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "harga": {
+                                    "type": "decimal"
+                                },
+                                "department_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Service type has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicetype"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/service_types/{id}": {
+            "get": {
+                "tags": [
+                    "service_types"
+                ],
+                "summary": "Find Service type by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service type",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service type has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicetype"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service tpye not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "service_types"
+                ],
+                "summary": "Add new Service type.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service type",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Service type object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "harga": {
+                                    "type": "decimal"
+                                },
+                                "department_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Service type data has been successfully updated.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicetype"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service type not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "service_types"
+                ],
+                "summary": "Remove the Service type resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Service type",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Service type resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Service type not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/staffs": {
+            "get": {
+                "tags": [
+                    "staffs"
+                ],
+                "summary": "Retrieves the collection of Staffs resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customers collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/staff"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "staffs"
+                ],
+                "summary": "Add new Staff.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Staff object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "no_telp": {
+                                    "type": "string"
+                                },
+                                "alamat": {
+                                    "type": "string"
+                                },
+                                "department_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Staff has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/staff"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/staffs/{id}": {
+            "get": {
+                "tags": [
+                    "staffs"
+                ],
+                "summary": "Find staff by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the staff",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Staff has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/staff"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Staff not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "staffs"
+                ],
+                "summary": "Add new Staff.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Staff object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                },
+                                "no_telp": {
+                                    "type": "string"
+                                },
+                                "alamat": {
+                                    "type": "string"
+                                },
+                                "department_id": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Staff data has successfully updated",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/staff"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "staffs"
+                ],
+                "summary": "Remove the Staff resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Staff",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Staff resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Staff not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/transaction_statuses": {
+            "get": {
+                "tags": [
+                    "transaction_statuses"
+                ],
+                "summary": "Retrieves the collection of Transaction status resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer (space) 'your_token_here'(without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction statuses collection.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/transactionstatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "transaction_statuses"
+                ],
+                "summary": "Retrieves the collection of Trasaction statuses resource.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Transaction status object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Transaction status has successfully added.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/transactionstatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/transaction_statuses/{id}": {
+            "get": {
+                "tags": [
+                    "transaction_statuses"
+                ],
+                "summary": "Find Transaction status by ID.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Transaction status",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction status has been founded.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/transactionstatus"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Transaction status not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "transaction_statuses"
+                ],
+                "summary": "Add new Transaction status.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Transaction status object that needs to be updated to the database",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nama": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The Transaction status data has successfully updated",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/transactionstatus"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "transaction_statuses"
+                ],
+                "summary": "Remove the Transaction status resource.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "e.g : Bearer(space) 'your_token_here' (without quotation) ",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter the ID of the Transaction status",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Transaction status resource deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "404": {
+                        "description": "Transaction status not found."
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Register User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "address": {
+                                    "type": "string"
+                                },
+                                "phoneNumber": {
+                                    "type": "string"
+                                },
+                                "path": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "User Login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User has been log in successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "car": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "jenis": {
+                    "type": "string"
+                },
+                "no_plat": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "customer_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "category": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "customer": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "string"
+                },
+                "no_telp": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "department": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "inventory": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "harga": {
+                    "type": "decimal"
+                },
+                "qty": {
+                    "type": "integer"
+                },
+                "category_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "payment": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "metode_pembayaran": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "service": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "ref_no": {
+                    "type": "string"
+                },
+                "customer_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "car_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "payment_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "status_transaksi_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "status_service_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceservicetype": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "service_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "service_type_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicestaff": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "staff_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "service_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicestatus": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicetype": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "service_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "biaya": {
+                    "type": "decimal"
+                },
+                "department_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "staff": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "no_telp": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "department_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "transactionstatus": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "user": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

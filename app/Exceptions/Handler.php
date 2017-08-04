@@ -63,15 +63,17 @@ class Handler extends ExceptionHandler
             return response()->json(['Handler.php token_invalid'], $exception->getStatusCode());
         } else if ($exception instanceof PayloadException) {
             return response()->JSON(['error' => 'Handler.php PayloadException error'], $exception->getStatusCode());
-        } else if ($exception instanceof JWTException) {
-            return response()->json(['Handler.php invalid_email_or_password'], $exception->getStatusCode());
         }
+        // else if ($exception instanceof JWTException) {
+        //     return response()->json(['Handler.php invalid_email_or_password'], $exception->getStatusCode());
+        // }
         // ELOQUENT
-        if ($exception instanceof ModelNotFoundException) { // database
-            return response()->json(['error' => 'Handler.php Data not found'], 404);
-        } else if ($exception instanceof QueryException) { // database
-            return response()->json(['error' => 'Handler.php data duplicate detected.']);
-        }
+        // if ($exception instanceof ModelNotFoundException) { // database
+        //     return response()->json(['error' => 'Handler.php Data not found'], 404);
+        // }
+        //  else if ($exception instanceof QueryException) { // database
+        //     return response()->json(['error' => 'Handler.php data duplicate detected.']);
+        // }
 
 
 

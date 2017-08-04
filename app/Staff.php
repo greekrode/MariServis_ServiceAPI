@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
-    protected $table = 'staff';
+    protected $table = 'staffs';
 
     protected $fillable = [
       'nama','no_telp','alamat','department_id'

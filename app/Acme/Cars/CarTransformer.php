@@ -41,7 +41,7 @@ class CarTransformer extends TransformerAbstract
                 'type' => (String) ucfirst($car->jenis),
                 'licensePlate' => (String) strtoupper($car->no_plat),
                 'model' => (String) ucfirst($car->model),
-                'customer' => $customer,
+                'owner' => $customer,
                 'serviceRecords' => $service_records,
             ];
         } else {
@@ -51,7 +51,7 @@ class CarTransformer extends TransformerAbstract
                 'type' => (String) ucfirst($car->jenis),
                 'licensePlate' => (String) strtoupper($car->no_plat),
                 'model' => (String) ucfirst($car->model),
-                'customer' => $customer,
+                'owner' => $customer,
             ];
         }
     }

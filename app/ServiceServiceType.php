@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServiceServiceType extends Model
 {
-    protected $table = 'service_service_types';
+    protected $table = 'service_service_type';
 
     protected $fillable = [
         'service_id','service_type_id'

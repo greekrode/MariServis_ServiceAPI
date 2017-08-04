@@ -88,19 +88,30 @@ class UserController extends Controller
      */
 
     public function register(UserRequest $request){
-        $user = $this->user->create([
-          'username' => ucfirst($request->get('username')),
-          'email' => strtolower($request->get('email')),
-          'password' => bcrypt($request->get('password')),
-          'path' => $request->image->store('public')
-        ]);
+
+        if ($request->isAdmin != null) {
+            $user = $this->user->create([
+              'username' => ucfirst($request->get('username')),
+              'email' => strtolower($request->get('email')),
+              'password' => bcrypt($request->get('password')),
+              'path' => $request->file('path')->store('public'),
+              'isAdmin' => $request->get('isAdmin')
+            ]);
+        } else {
+            $user = $this->user->create([
+              'username' => ucfirst($request->get('username')),
+              'email' => strtolower($request->get('email')),
+              'password' => bcrypt($request->get('password')),
+              'path' => $request->file('path')->store('public')
+            ]);
+        }
+
 
         $user->customer()->create([
           'nama' => ucfirst($request['name']),
           'alamat' => ucfirst($request['address']),
           'no_telp' => $request['phoneNumber']
         ]);
-
 
         return response()->json(['status'=>true,'message'=>'User created successfully','data'=>$user]);
     }

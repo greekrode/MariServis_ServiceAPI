@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('path');
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('isAdmin')->default(0)->index();
         });
     }
 

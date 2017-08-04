@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServiceStaff extends Model
 {
-    protected $table = 'service_staffs';
+    protected $table = 'service_staff';
 
     protected $fillable = [
         'staff_id','service_id'

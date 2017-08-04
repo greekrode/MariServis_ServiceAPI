@@ -60,5 +60,8 @@ class Kernel extends HttpKernel
         'custom.verify.jwt.auth' => \App\Http\Middleware\VerifyJWTToken::class,
         'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
         'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+
+        'isAdmin' => \App\Http\Middleware\CheckIsAdmin::class,
+        'hasLogin' => \App\Http\Middleware\CheckHasLogin::class,
     ];
 }
